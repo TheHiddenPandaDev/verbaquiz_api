@@ -1,0 +1,10 @@
+Flask~=2.2.2
+Flask-SQLAlchemy
+gunicorn
+psycopg2-binary
+dependency-injector
+SQLAlchemy~=1.4.46
+virtualenv
+Werkzeug~=2.2.2
+jsonschema~=4.17.3
+Faker~=18.4.0
