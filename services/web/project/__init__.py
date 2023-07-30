@@ -1,7 +1,9 @@
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from fastapi import FastAPI
 
-app = Flask(__name__)
-app.config.from_object("project.config.Config")
+from project.core.settings import Settings
+from project.ui.routes.answer.get_answer_route import router
 
-db = SQLAlchemy(app)
+settings = Settings()
+app = FastAPI()
+
+app.include_router(router)

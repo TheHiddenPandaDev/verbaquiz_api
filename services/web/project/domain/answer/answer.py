@@ -1,29 +1,13 @@
-from __future__ import annotations
+from sqlalchemy import Column, Integer, String
 
-from project import db
+from project.core.database import Base
 
 
-class Answer(db.Model):
-    answer_id: int = db.Column(db.Integer, primary_key=True)
-    text: str = db.Column(db.String(64), unique=True)
+class Answer(Base):
+    __tablename__ = "answers"
 
-    def __init__(
-            self,
-            answer_id: int,
-            text: str,
-    ):
-        self.answer_id = answer_id
-        self.text = text
-
-    @classmethod
-    def create(cls,
-               answer_id: int,
-               text: str,
-               ) -> Answer:
-        return cls(
-            answer_id,
-            text,
-        )
+    answer_id: int = Column(Integer, primary_key=True, index=True)
+    text: str = Column(String, unique=True)
 
     def json(self) -> dict:
         return {

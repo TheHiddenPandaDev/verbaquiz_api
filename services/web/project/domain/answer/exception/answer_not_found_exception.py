@@ -7,13 +7,14 @@ class AnswerNotNotFoundException(VerbaquizException):
     api_error_event: str
     documentation: str
     description: str
+
     def __init__(
-        self,
-        code: int,
-        api_error_code: int,
-        api_error_event: str,
-        documentation: str,
-        description="Answer not found"
+            self,
+            code: int,
+            api_error_code: int,
+            api_error_event: str,
+            documentation: str,
+            description="Answer not found"
     ):
         self.code = code
         self.api_error_code = api_error_code
@@ -27,4 +28,5 @@ class AnswerNotNotFoundException(VerbaquizException):
             documentation=documentation,
             description=description,
         )
+
     pass

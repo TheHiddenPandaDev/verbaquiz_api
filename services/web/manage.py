@@ -1,35 +1,66 @@
-from flask.cli import FlaskGroup
-from flask import jsonify
+from functools import lru_cache
+
+import typer
+
+from fastapi import status
+from fastapi.responses import JSONResponse
 
 from project import app
-from project import db
-from project.setup.setup import setup_project
-
+from project.core.setup import setup_project
 from project.domain.answer.answer import Answer
-
-cli = FlaskGroup(app)
+from project.core.settings import Settings
+from project.core.database import Base, get_db, engine
 
 setup_project()
-@app.errorhandler(Exception)
+
+cli = typer.Typer()
+
+
+@lru_cache()
+def get_settings():
+    return Settings()
+
+
+@app.exception_handler(Exception)
 def handle_error(e):
-    code = 500
     if hasattr(e, 'get_response') and hasattr(e, 'code'):
         return e.get_response(), e.code
-    return jsonify(error=str(e)), code
 
-@cli.command("create_db")
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={
+            "message": str(e)
+        }
+    )
+
+
+@app.on_event("startup")
+async def startup():
+    database = get_db().__next__()
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    database = get_db().__next__()
+    await database.disconnect()
+
+
 def create_db():
-    db.drop_all()
-    db.create_all()
-    db.session.commit()
 
-    # Seed DB
-    db.session.add(Answer(
+    engine.begin()
+
+    database = get_db().__next__()
+
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+
+    database.add(Answer(
         answer_id=1,
         text="Test",
     ))
-    db.session.commit()
+    database.commit()
 
 
 if __name__ == "__main__":
-    cli()
+    create_db()

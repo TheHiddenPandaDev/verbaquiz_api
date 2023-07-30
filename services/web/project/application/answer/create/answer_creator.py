@@ -9,16 +9,16 @@ class AnswerCreator:
     answer_repository: AnswerRepository
 
     def __init__(
-        self,
-        answer_repository: AnswerRepository,
+            self,
+            answer_repository: AnswerRepository,
     ):
         self.answer_repository = answer_repository
 
     def __call__(
-        self,
-        text: str
+            self,
+            text: str
     ):
         answer = Answer(
-            text,
+            text=text,
         )
-        self.answer_repository.create(text)
+        self.answer_repository.create(answer)

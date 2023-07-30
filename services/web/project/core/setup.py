@@ -1,11 +1,10 @@
 from project import app
 
-from project.container import Container
+from project.core.container_config import Container
 from project.ui.routes.answer import get_answer_route
 
 
 def setup_project():
-    app.register_blueprint(get_answer_route.blueprint, url_prefix="/answer")
 
     container = Container()
 

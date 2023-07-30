@@ -1,5 +1,5 @@
-from project.api_errors import ApiErrors
-from project.documentation_urls import DocumentationUrls
+from project.core.api_errors import ApiErrors
+from project.core.documentation_urls import DocumentationUrls
 from project.infrastructure.validation.abstract_validation_rules import AbstractValidationRules
 
 

@@ -10,3 +10,6 @@ class ITAnswerRepository(ABC):
 
     def get(self, id_answer: int) -> Optional[Answer]:
         ...
+
+    def create(self, answer: Answer) -> Optional[int]:
+        ...
