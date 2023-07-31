@@ -17,6 +17,9 @@ class AnswerRepository(ITAnswerRepository):
 
         return db.query(Answer).filter(Answer.answer_id == answer_id).first()
 
-    def create(self, answer: Answer) -> Optional[int]:
-        # Answer.query.create(answer)
-        return 1
+    def create(self, answer: Answer) -> Optional[Answer]:
+        db = get_db().__next__()
+        db.add(answer)
+        db.commit()
+        db.refresh(answer)
+        return answer

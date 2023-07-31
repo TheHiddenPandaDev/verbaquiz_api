@@ -1,4 +1,7 @@
 from dataclasses import dataclass
+from typing import Optional
+
+from fastapi import Depends
 
 from project.domain.answer.answer import Answer
 from project.infrastructure.persistance.PostgreeSQL.answer.answer_repository import AnswerRepository
@@ -10,15 +13,15 @@ class AnswerCreator:
 
     def __init__(
             self,
-            answer_repository: AnswerRepository,
+            answer_repository: AnswerRepository = Depends(AnswerRepository)
     ):
         self.answer_repository = answer_repository
 
-    def __call__(
-            self,
-            text: str
-    ):
+    def execute(
+        self,
+        text: str
+    ) -> Optional[Answer]:
         answer = Answer(
             text=text,
         )
-        self.answer_repository.create(answer)
+        return self.answer_repository.create(answer)

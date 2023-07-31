@@ -1,20 +1,13 @@
 from functools import lru_cache
 
-import typer
-
 from fastapi import status
 from fastapi.responses import JSONResponse
 
 from project import app
-from project.core.setup import setup_project
 from project.domain.answer import answer
 from project.domain.answer.answer import Answer
 from project.core.settings import Settings
 from project.core.database import get_db, engine
-
-setup_project()
-
-cli = typer.Typer()
 
 
 @lru_cache()
@@ -37,12 +30,14 @@ def handle_error(e):
 
 @app.on_event("startup")
 async def startup():
+    print('On Startup')
     database = get_db().__next__()
     await database.connect()
 
 
 @app.on_event("shutdown")
 async def shutdown():
+    print('On Shutdown')
     database = get_db().__next__()
     await database.disconnect()
 
@@ -56,9 +51,8 @@ def create_db():
 
     database = get_db().__next__()
 
-    database.add(Answer(
-        text="Test",
-    ))
+    database.add(Answer(text="Test",))
+    database.add(Answer(text="Test 2",))
     database.commit()
 
 

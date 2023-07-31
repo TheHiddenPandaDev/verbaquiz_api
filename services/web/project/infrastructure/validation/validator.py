@@ -9,11 +9,14 @@ class Validator(object):
 
     @staticmethod
     def validate(
-            json_to_validate: dict,
-            json_validation_rules: AbstractValidationRules,
+        json_to_validate: dict,
+        json_validation_rules: AbstractValidationRules,
     ) -> None:
         try:
-            validate(instance=json_to_validate, schema=json_validation_rules.schema)
+            validate(
+                instance=json_to_validate,
+                schema=json_validation_rules.schema,
+            )
         except (SchemaError, ValidationError) as e:
             raise ValidationException(
                 code=json_validation_rules.http_error_code,

@@ -13,13 +13,6 @@ print("Database URL is ", SQLALCHEMY_DATABASE_URL)
 
 metadata = sqlalchemy.MetaData()
 
-sqlalchemy.Table(
-    "answers",
-    metadata,
-    sqlalchemy.Column("answer_id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("text", sqlalchemy.String),
-)
-
 engine = create_engine(
     settings.DATABASE_URL
 )

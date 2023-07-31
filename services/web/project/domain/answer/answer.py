@@ -7,12 +7,10 @@ class Answer(Base):
     __tablename__ = "answers"
 
     answer_id = Column(Integer, primary_key=True, index=True)
-    text = Column(String, unique=True)
+    text = Column(String, unique=False)
 
-    """
-    def json() -> dict:
+    def to_json(self) -> dict:
         return {
-            "answer_id": answer_id,
+            "answer_id": self.answer_id,
             "text": self.text,
         }
-    """
