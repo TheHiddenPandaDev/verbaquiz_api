@@ -3,7 +3,6 @@ version: '3.8'
 services:
   web:
     build: ./services/web
-    command: python manage.py run -h 0.0.0.0
     volumes:
       - ./services/web/:/usr/src/app/
     ports:
@@ -20,6 +19,8 @@ services:
       - POSTGRES_USER=verbaquiz
       - POSTGRES_PASSWORD=verbaquiz
       - POSTGRES_DB=verbaquiz_dev
+    ports:
+      - "6543:5432"
 
 volumes:
   postgres_data:

@@ -7,9 +7,10 @@ from fastapi.responses import JSONResponse
 
 from project import app
 from project.core.setup import setup_project
+from project.domain.answer import answer
 from project.domain.answer.answer import Answer
 from project.core.settings import Settings
-from project.core.database import Base, get_db, engine
+from project.core.database import get_db, engine
 
 setup_project()
 
@@ -48,15 +49,14 @@ async def shutdown():
 
 def create_db():
 
-    engine.begin()
+    answer.Base.metadata.drop_all(engine)
+    answer.Base.metadata.create_all(engine)
+
+    print("Creating DB")
 
     database = get_db().__next__()
 
-    Base.metadata.drop_all(bind=engine)
-    Base.metadata.create_all(bind=engine)
-
     database.add(Answer(
-        answer_id=1,
         text="Test",
     ))
     database.commit()

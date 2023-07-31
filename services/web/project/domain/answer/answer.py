@@ -6,11 +6,13 @@ from project.core.database import Base
 class Answer(Base):
     __tablename__ = "answers"
 
-    answer_id: int = Column(Integer, primary_key=True, index=True)
-    text: str = Column(String, unique=True)
+    answer_id = Column(Integer, primary_key=True, index=True)
+    text = Column(String, unique=True)
 
-    def json(self) -> dict:
+    """
+    def json() -> dict:
         return {
-            "answer_id": self.answer_id,
+            "answer_id": answer_id,
             "text": self.text,
         }
+    """

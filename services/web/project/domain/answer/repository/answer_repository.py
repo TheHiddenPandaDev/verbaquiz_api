@@ -8,7 +8,7 @@ class ITAnswerRepository(ABC):
     def get_all(self) -> None:
         ...
 
-    def get(self, id_answer: int) -> Optional[Answer]:
+    def get(self, answer_id: int) -> Optional[Answer]:
         ...
 
     def create(self, answer: Answer) -> Optional[int]:
