@@ -1,5 +1,3 @@
-from typing import Union, Tuple, Dict
-
 from fastapi import APIRouter, Depends, status, Request, Response
 
 from project.core.documentation_urls import DocumentationUrls
@@ -9,7 +7,7 @@ from project.application.answer.create.create_answer_command_handler import Crea
 from project.application.answer.create.create_answer_use_case import CreateAnswerUseCase
 from project.infrastructure.persistance.PostgreeSQL.answer.answer_repository import AnswerRepository
 from project.infrastructure.validation.validation_exception import ValidationException
-from project.infrastructure.validation.validation_rules.create_answer_route_validation_rules import \
+from project.infrastructure.validation.validation_rules.answers.create_answer_route_validation_rules import \
     CreateAnswerRouteValidationRules
 from project.infrastructure.validation.validator import Validator
 
