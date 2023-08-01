@@ -9,4 +9,3 @@ app = FastAPI()
 
 app.include_router(get_answer_route)
 app.include_router(create_answer_route)
-
