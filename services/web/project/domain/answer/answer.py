@@ -5,7 +5,7 @@ from typing import Optional
 
 
 from project import db
-from project.utils.datetime_utils import get_local_date_time
+from project.utils.datetime_utils import get_local_datetime, readable_datetime
 
 
 class Answer(db.Model):
@@ -37,6 +37,6 @@ class Answer(db.Model):
         return {
             "answer_id": self.answer_id,
             "text": self.text,
-            "created_at": self.created_at.get_local_date_time().readable(),
-            "updated_at": self.updated_at.get_local_date_time().readable(),
+            "created_at": readable_datetime(get_local_datetime(self.created_at)),
+            "updated_at": readable_datetime(get_local_datetime(self.updated_at)),
         }
