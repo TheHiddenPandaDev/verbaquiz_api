@@ -8,8 +8,8 @@ class QuestionMother:
 
     @staticmethod
     def create(
-            question_id: int,
-            text: str
+        question_id: int,
+        text: str
     ) -> Question:
         return Question(
             question_id=question_id,
@@ -18,8 +18,8 @@ class QuestionMother:
 
     @staticmethod
     def random(
-            question_id: Optional[int] = None,
-            text: Optional[str] = None,
+        question_id: Optional[int] = None,
+        text: Optional[str] = None,
     ) -> Question:
         fake: Faker = Faker()
 

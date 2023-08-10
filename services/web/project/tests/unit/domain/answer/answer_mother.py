@@ -8,8 +8,8 @@ class AnswerMother:
 
     @staticmethod
     def create(
-            answer_id: int,
-            text: str
+        answer_id: int,
+        text: str
     ) -> Answer:
         return Answer(
             answer_id=answer_id,
@@ -18,8 +18,8 @@ class AnswerMother:
 
     @staticmethod
     def random(
-            answer_id: Optional[int] = None,
-            text: Optional[str] = None,
+        answer_id: Optional[int] = None,
+        text: Optional[str] = None,
     ) -> Answer:
         fake: Faker = Faker()
 
