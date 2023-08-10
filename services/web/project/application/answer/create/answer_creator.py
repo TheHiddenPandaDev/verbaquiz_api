@@ -17,9 +17,9 @@ class AnswerCreator:
     def __call__(
         self,
         text: str
-    ):
+    ) -> Answer:
         answer = Answer(
             None,
             text=text,
         )
-        self.answer_repository.create(answer)
+        return self.answer_repository.create(answer)

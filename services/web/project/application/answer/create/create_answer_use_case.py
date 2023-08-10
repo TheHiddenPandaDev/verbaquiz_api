@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from project.api_errors import ApiErrors
 from project.documentation_urls import DocumentationUrls
+from project.domain.answer.answer import Answer
 from project.domain.question.exception.question_not_found_exception import QuestionNotFoundException
 from project.domain.question.service.question_finder import QuestionFinder
 
@@ -25,7 +26,7 @@ class CreateAnswerUseCase:
         self,
         id_question: int,
         text: str,
-    ):
+    ) -> Answer:
         if (
             self.question_finder.__call__(id_question=id_question) is None
         ):
@@ -36,4 +37,4 @@ class CreateAnswerUseCase:
                 api_error_event=ApiErrors.table_answer_unexpected_error['event'],
                 documentation=DocumentationUrls.url_create_answer,
             )
-        self.answer_creator.__call__(text)
+        return self.answer_creator.__call__(text)

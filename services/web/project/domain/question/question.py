@@ -7,7 +7,7 @@ from project import db
 
 class Question(db.Model):
     question_id: int = db.Column(db.Integer, primary_key=True)
-    text: str = db.Column(db.String(64), unique=True)
+    text: str = db.Column(db.String(64))
     # created_at
     # updated_at
 
@@ -30,7 +30,7 @@ class Question(db.Model):
             text,
         )
 
-    def json(self) -> dict:
+    def to_json(self) -> dict:
         return {
             "question_id": self.question_id,
             "text": self.text,
