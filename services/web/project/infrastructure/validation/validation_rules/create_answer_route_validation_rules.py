@@ -8,11 +8,20 @@ class CreateAnswerRouteValidationRules(AbstractValidationRules):
     schema: dict = {
         "type": "object",
         "properties": {
-            "text": {"type": "string"},
+            "id_question": {
+                "type": "number",
+                "minimum": 0,
+            },
+            "text": {
+                "type": "string",
+            },
         },
-        "required": ["text"],
+        "required": [
+            "id_question",
+            "text"
+         ],
     }
     http_error_code: int = 400
     api_error_code: int = ApiErrors.table_answer_unexpected_error['code']
     api_error_event: str = ApiErrors.table_answer_unexpected_error['event']
-    documentation: str = DocumentationUrls.url_create_log
+    documentation: str = DocumentationUrls.url_create_answer

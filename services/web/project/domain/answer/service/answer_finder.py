@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from project.infrastructure.persistance.PostgreeSQL.answer.answer_repository import AnswerRepository
+from project.infrastructure.persistence.PostgreSQL.answer.answer_repository import AnswerRepository
 from ..answer import Answer
 
 

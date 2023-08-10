@@ -5,33 +5,33 @@ from typing import Optional
 from project import db
 
 
-class Answer(db.Model):
-    answer_id: int = db.Column(db.Integer, primary_key=True)
+class Question(db.Model):
+    question_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64), unique=True)
     # created_at
     # updated_at
 
     def __init__(
         self,
-        answer_id: Optional[int],
+        question_id: Optional[int],
         text: str,
     ):
-        self.answer_id = answer_id
+        self.question_id = question_id
         self.text = text
 
     @classmethod
     def create(
         cls,
-        answer_id: int,
+        question_id: int,
         text: str,
-    ) -> Answer:
+    ) -> Question:
         return cls(
-            answer_id,
+            question_id,
             text,
         )
 
     def json(self) -> dict:
         return {
-            "answer_id": self.answer_id,
+            "question_id": self.question_id,
             "text": self.text,
         }
