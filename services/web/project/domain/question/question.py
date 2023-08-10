@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Optional
 
 from project import db
@@ -8,8 +9,8 @@ from project import db
 class Question(db.Model):
     question_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64))
-    # created_at
-    # updated_at
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at: datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     def __init__(
         self,
@@ -34,4 +35,6 @@ class Question(db.Model):
         return {
             "question_id": self.question_id,
             "text": self.text,
+            "created_at": self.created_at.strftime("%d-%m-%Y %H:%M:%S"),
+            "updated_at": self.updated_at.strftime("%d-%m-%Y %H:%M:%S"),
         }
