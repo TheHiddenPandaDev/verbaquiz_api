@@ -49,9 +49,9 @@ class CreateAnswerCommandHandlerTest(unittest.TestCase):
 
         result_answer = update_answer_text_command_handler.__call__(update_answer_text_command)
 
-        self.assertEquals(result_answer.answer_id, current_answer.answer_id)
-        self.assertNotEquals(result_answer.text, current_answer.text)
-        self.assertEquals(result_answer.text, new_text)
+        self.assertEqual(result_answer.answer_id, current_answer.answer_id)
+        self.assertNotEqual(result_answer.text, current_answer.text)
+        self.assertEqual(result_answer.text, new_text)
 
     @patch('project.infrastructure.persistence.PostgreSQL.answer.answer_repository.AnswerRepository')
     @patch('project.domain.answer.service.answer_finder.AnswerFinder')
