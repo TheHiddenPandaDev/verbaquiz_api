@@ -36,6 +36,6 @@ class Question(db.Model):
         return {
             "question_id": self.question_id,
             "text": self.text,
-            "created_at": self.created_at.get_local_date_time.strftime("%d-%m-%Y %H:%M:%S"),
-            "updated_at": self.updated_at.get_local_date_time.strftime("%d-%m-%Y %H:%M:%S"),
+            "created_at": self.created_at.get_local_date_time().readable(),
+            "updated_at": self.updated_at.get_local_date_time().readable(),
         }
