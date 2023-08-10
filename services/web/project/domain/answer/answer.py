@@ -1,16 +1,20 @@
 from __future__ import annotations
 
+import pytz as pytz
 from datetime import datetime
 from typing import Optional
+
 
 from project import db
 
 
 class Answer(db.Model):
+    dt = datetime.now(tz=pytz.timezone('Europe/Madrid'))
+
     answer_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64))
-    created_at: datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at: datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    created_at: datetime = db.Column(db.DateTime, nullable=False, default=dt)
+    updated_at: datetime = db.Column(db.DateTime, default=dt, onupdate=dt)
 
     def __init__(
         self,

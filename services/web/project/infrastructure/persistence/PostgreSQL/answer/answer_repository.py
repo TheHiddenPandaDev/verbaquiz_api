@@ -17,6 +17,15 @@ class AnswerRepository(ITAnswerRepository):
         db.session.commit()
         return answer
 
+    def update_text(
+        self,
+        answer: Answer,
+        text: str,
+    ) -> Answer:
+        answer.text = text,
+        db.session.commit()
+        return answer
+
     def get_all(self) -> list[Answer]:
         return Answer.query.all()
 

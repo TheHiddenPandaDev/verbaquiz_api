@@ -12,6 +12,13 @@ class ITAnswerRepository(ABC):
     ) -> Answer:
         ...
 
+    def update_text(
+        self,
+        answer: Answer,
+        text: str,
+    ) -> Answer:
+        ...
+
     def get_all(self) -> None:
         ...
 

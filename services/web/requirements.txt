@@ -11,3 +11,4 @@ Faker~=18.4.0
 pytest
 python-dotenv~=1.0.0
 flask_api
+pytz~=2023.3

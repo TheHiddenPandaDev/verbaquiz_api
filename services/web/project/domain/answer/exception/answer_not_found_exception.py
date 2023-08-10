@@ -1,7 +1,7 @@
 from project.domain.verbaquiz_exception import VerbaquizException
 
 
-class AnswerNotNotFoundException(VerbaquizException):
+class AnswerNotFoundException(VerbaquizException):
     code: int
     api_error_code: int
     api_error_event: str
