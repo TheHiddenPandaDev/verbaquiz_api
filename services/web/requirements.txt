@@ -3,7 +3,7 @@ Flask-SQLAlchemy
 gunicorn
 psycopg2-binary
 dependency-injector
-SQLAlchemy~=1.4.46
+SQLAlchemy~=2.0.19
 virtualenv
 Werkzeug~=2.2.2
 jsonschema~=4.17.3

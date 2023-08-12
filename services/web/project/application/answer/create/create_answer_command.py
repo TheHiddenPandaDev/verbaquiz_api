@@ -3,13 +3,13 @@ from dataclasses import dataclass
 
 @dataclass
 class CreateAnswerCommand:
-    id_question: int
+    question_id: int
     text: str
 
     def __init__(
         self,
-        id_question: int,
+        question_id: int,
         text: str,
     ):
-        self.id_question = id_question
+        self.question_id = question_id
         self.text = text

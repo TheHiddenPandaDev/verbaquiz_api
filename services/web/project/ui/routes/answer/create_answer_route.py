@@ -39,7 +39,7 @@ def create_answer(
         ), CreateAnswerRouteValidationRules.http_error_code
 
     create_answer_command = CreateAnswerCommand(
-        id_question=post_request['id_question'],
+        question_id=post_request['question_id'],
         text=post_request['text'],
     )
 

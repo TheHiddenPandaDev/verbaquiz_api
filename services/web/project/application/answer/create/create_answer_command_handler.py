@@ -20,6 +20,6 @@ class CreateAnswerCommandHandler:
         create_answer_command: CreateAnswerCommand,
     ) -> Answer:
         return self.create_answer_use_case.__call__(
-            id_question=create_answer_command.id_question,
+            question_id=create_answer_command.question_id,
             text=create_answer_command.text,
         )

@@ -10,7 +10,7 @@ class CreateAnswerRouteValidationRules(AbstractValidationRules):
     schema: dict = {
         "type": "object",
         "properties": {
-            "id_question": {
+            "question_id": {
                 "type": "number",
                 "minimum": 0,
             },
@@ -19,7 +19,7 @@ class CreateAnswerRouteValidationRules(AbstractValidationRules):
             },
         },
         "required": [
-            "id_question",
+            "question_id",
             "text"
          ],
     }

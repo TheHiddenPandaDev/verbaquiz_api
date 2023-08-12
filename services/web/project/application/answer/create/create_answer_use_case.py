@@ -24,15 +24,15 @@ class CreateAnswerUseCase:
 
     def __call__(
         self,
-        id_question: int,
+        question_id: int,
         text: str,
     ) -> Answer:
         if (
-            self.question_finder.__call__(id_question=id_question) is None
+            self.question_finder.__call__(question_id=question_id) is None
         ):
             raise QuestionNotFoundException(
                 code=400,
-                description=f"id_question: {id_question}. Don't exist in database.",
+                description=f"question_id: {question_id}. Don't exist in database.",
                 api_error_code=ApiErrors.table_answer_unexpected_error['code'],
                 api_error_event=ApiErrors.table_answer_unexpected_error['event'],
                 documentation=DocumentationUrls.url_create_answer,

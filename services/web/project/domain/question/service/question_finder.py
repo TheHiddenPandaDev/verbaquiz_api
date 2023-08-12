@@ -17,8 +17,8 @@ class QuestionFinder:
 
     def __call__(
             self,
-            id_question: int
+            question_id: int
     ) -> Optional[Question]:
         return self.question_repository.get(
-            id_question
+            question_id
         )

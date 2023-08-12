@@ -38,6 +38,26 @@ def create_db():
     db.session.add(Answer(
         answer_id=None,
         text="Answer",
+        is_correct=True,
+        question_id=1,
+    ))
+    db.session.add(Answer(
+        answer_id=None,
+        text="Answer",
+        is_correct=False,
+        question_id=1,
+    ))
+    db.session.add(Answer(
+        answer_id=None,
+        text="Answer",
+        is_correct=False,
+        question_id=1,
+    ))
+    db.session.add(Answer(
+        answer_id=None,
+        text="Answer",
+        is_correct=False,
+        question_id=1,
     ))
     db.session.commit()
 

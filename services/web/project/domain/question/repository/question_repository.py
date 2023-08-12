@@ -8,5 +8,5 @@ class ITQuestionRepository(ABC):
     def get_all(self) -> None:
         ...
 
-    def get(self, id_question: int) -> Optional[Question]:
+    def get(self, question_id: int) -> Optional[Question]:
         ...

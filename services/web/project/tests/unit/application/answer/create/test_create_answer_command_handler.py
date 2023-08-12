@@ -30,7 +30,7 @@ class CreateAnswerCommandHandlerTest(unittest.TestCase):
         question: Question = QuestionMother.random()
 
         create_answer_command = CreateAnswerCommand(
-            id_question=1,
+            question_id=1,
             text='answer',
         )
 
@@ -54,7 +54,7 @@ class CreateAnswerCommandHandlerTest(unittest.TestCase):
         assert mock_answer_repository is project.infrastructure.persistence.PostgreSQL.answer.answer_repository.AnswerRepository
 
         create_answer_command = CreateAnswerCommand(
-            id_question=1,
+            question_id=1,
             text='answer',
         )
 

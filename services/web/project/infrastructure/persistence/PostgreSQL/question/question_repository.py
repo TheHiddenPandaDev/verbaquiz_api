@@ -10,5 +10,5 @@ class QuestionRepository(ITQuestionRepository):
     def get_all(self) -> list[Question]:
         return Question.query.all()
 
-    def get(self, id_question: int) -> Optional[Question]:
-        return Question.query.get(id_question)
+    def get(self, question_id: int) -> Optional[Question]:
+        return Question.query.get(question_id)

@@ -3,6 +3,9 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 
+from sqlalchemy import Integer, ForeignKey, Column
+from sqlalchemy.orm import mapped_column, relationship
+
 from project import db
 from project.utils.datetime_utils import get_local_datetime, readable_datetime
 
@@ -10,6 +13,11 @@ from project.utils.datetime_utils import get_local_datetime, readable_datetime
 class Question(db.Model):
     question_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64))
+
+    # Answers
+    answers = db.relationship("Answer", back_populates="question", primaryjoin="Answer.question_id==Question.question_id")
+    #correct_answer = db.relationship("Answer", back_pprimaryjoin="Answer.question_id==Question.question_id, " "Answer.is_correct==1")
+
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at: datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
