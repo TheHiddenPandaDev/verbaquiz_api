@@ -52,6 +52,6 @@ def create_answer(
             "api_error_event": None,
             "documentation": DocumentationUrls.url_create_answer,
             "description": "OK",
-            "answer": answer.to_json(),
+            "response": answer.to_json(),
         }
     ), status.HTTP_201_CREATED,

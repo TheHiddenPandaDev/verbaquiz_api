@@ -20,6 +20,6 @@ class UpdateAnswerTextCommandHandler:
         update_answer_text_command: UpdateAnswerTextCommand,
     ) -> Answer:
         return self.update_answer_text_use_case.__call__(
-            id_answer=update_answer_text_command.id_answer,
+            answer_id=update_answer_text_command.answer_id,
             text=update_answer_text_command.text,
         )

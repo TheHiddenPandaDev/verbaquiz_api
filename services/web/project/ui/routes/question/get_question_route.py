@@ -3,22 +3,22 @@ from flask import Blueprint, jsonify, Response
 from dependency_injector.wiring import inject, Provide
 
 from project.documentation_urls import DocumentationUrls
-from project.domain.answer.answer import Answer
 from project.container import Container
-from project.infrastructure.persistence.PostgreSQL.answer.answer_repository import AnswerRepository
+from project.domain.question.question import Question
+from project.infrastructure.persistence.PostgreSQL.question.question_repository import QuestionRepository
 
-blueprint = Blueprint('get_answer_route', __name__)
+blueprint = Blueprint('get_question_route', __name__)
 
 
-@blueprint.route("/<answer_id>", methods=["GET"])
+@blueprint.route("/<question_id>", methods=["GET"])
 @inject
-def get_answer(
-    answer_id: int,
-    repository: AnswerRepository = Provide[Container.answer_repository],
+def get_question(
+    question_id: int,
+    repository: QuestionRepository = Provide[Container.question_repository],
 ) -> tuple[
     Response, int
 ]:
-    answer: Answer = repository.get(answer_id)
+    question: Question = repository.get(question_id)
 
     api_response: dict = {
         "code": status.HTTP_200_OK,
@@ -28,11 +28,11 @@ def get_answer(
         "description": "OK",
     }
 
-    if answer is None:
+    if question is None:
         api_response.update({"description": "NOT FOUND"})
         api_response.update({"code": status.HTTP_404_NOT_FOUND})
         api_response.update({"answer": None})
         return jsonify(api_response), status.HTTP_404_NOT_FOUND
 
-    api_response.update({"response": answer.to_json()})
+    api_response.update({"response": question.to_json()})
     return jsonify(api_response), status.HTTP_200_OK

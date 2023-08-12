@@ -17,8 +17,8 @@ class AnswerFinder:
 
     def __call__(
             self,
-            id_answer: int
+            answer_id: int
     ) -> Optional[Answer]:
         return self.answer_repository.get(
-            id_answer
+            answer_id
         )

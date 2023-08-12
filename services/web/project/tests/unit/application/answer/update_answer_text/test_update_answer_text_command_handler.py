@@ -35,7 +35,7 @@ class CreateAnswerCommandHandlerTest(unittest.TestCase):
         modified_answer.text = new_text
 
         update_answer_text_command = UpdateAnswerTextCommand(
-            id_answer=current_answer.answer_id,
+            answer_id=current_answer.answer_id,
             text=new_text,
         )
 
@@ -66,7 +66,7 @@ class CreateAnswerCommandHandlerTest(unittest.TestCase):
         new_text: str = 'answer'
 
         update_answer_text_command = UpdateAnswerTextCommand(
-            id_answer=1,
+            answer_id=1,
             text=new_text,
         )
 

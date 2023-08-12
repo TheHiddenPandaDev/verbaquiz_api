@@ -25,15 +25,15 @@ class UpdateAnswerTextUseCase:
 
     def __call__(
         self,
-        id_answer: int,
+        answer_id: int,
         text: str,
     ) -> Answer:
-        answer: Optional[Answer] = self.answer_finder.__call__(id_answer=id_answer)
+        answer: Optional[Answer] = self.answer_finder.__call__(answer_id=answer_id)
 
         if answer is None:
             raise AnswerNotFoundException(
                 code=400,
-                description=f"id_answer: {id_answer}. Don't exist in database.",
+                description=f"answer_id: {answer_id}. Don't exist in database.",
                 api_error_code=ApiErrors.table_answer_unexpected_error['code'],
                 api_error_event=ApiErrors.table_answer_unexpected_error['event'],
                 documentation=DocumentationUrls.url_create_answer,

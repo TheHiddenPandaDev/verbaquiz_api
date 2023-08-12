@@ -3,13 +3,13 @@ from dataclasses import dataclass
 
 @dataclass
 class UpdateAnswerTextCommand:
-    id_answer: int
+    answer_id: int
     text: str
 
     def __init__(
         self,
-        id_answer: int,
+        answer_id: int,
         text: str,
     ):
-        self.id_answer = id_answer
+        self.answer_id = answer_id
         self.text = text

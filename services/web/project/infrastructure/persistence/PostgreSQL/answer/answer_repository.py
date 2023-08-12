@@ -31,6 +31,6 @@ class AnswerRepository(ITAnswerRepository):
 
     def get(
         self,
-        id_answer: int,
+        answer_id: int,
     ) -> Optional[Answer]:
-        return Answer.query.get(id_answer)
+        return Answer.query.get(answer_id)

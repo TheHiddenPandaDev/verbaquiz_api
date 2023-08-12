@@ -1,10 +1,9 @@
 from __future__ import annotations
 
+import json
+
 from datetime import datetime
 from typing import Optional
-
-from sqlalchemy import Integer, ForeignKey, Column
-from sqlalchemy.orm import mapped_column, relationship
 
 from project import db
 from project.utils.datetime_utils import get_local_datetime, readable_datetime
@@ -13,11 +12,7 @@ from project.utils.datetime_utils import get_local_datetime, readable_datetime
 class Question(db.Model):
     question_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64))
-
-    # Answers
     answers = db.relationship("Answer", back_populates="question", primaryjoin="Answer.question_id==Question.question_id")
-    #correct_answer = db.relationship("Answer", back_pprimaryjoin="Answer.question_id==Question.question_id, " "Answer.is_correct==1")
-
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at: datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -41,9 +36,21 @@ class Question(db.Model):
         )
 
     def to_json(self) -> dict:
+
+        answers: list = []
+        correct_answer: Optional[dict] = None
+
+        for answer in self.answers:
+            answers.append(answer.to_json())
+
+            if answer.is_correct:
+                correct_answer = answer.to_json()
+
         return {
             "question_id": self.question_id,
             "text": self.text,
+            "correct_answer": correct_answer,
+            "answers": answers,
             "created_at": readable_datetime(get_local_datetime(self.created_at)),
             "updated_at": readable_datetime(get_local_datetime(self.updated_at)),
         }

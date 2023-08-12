@@ -17,10 +17,10 @@ from project.infrastructure.validation.validator import Validator
 blueprint = Blueprint('update_answer_text_route', __name__)
 
 
-@blueprint.route("<id_answer>/update/", methods=["PUT"])
+@blueprint.route("<answer_id>/update/", methods=["PUT"])
 @inject
 def update_answer(
-    id_answer: int,
+    answer_id: int,
     update_answer_text_command_handler: UpdateAnswerTextCommandHandler = Provide[Container.update_answer_text_command_handler],
 ) -> [Response, int]:
 
@@ -42,7 +42,7 @@ def update_answer(
         ), UpdateAnswerTextRouteValidationRules.http_error_code
 
     update_answer_text_command = UpdateAnswerTextCommand(
-        id_answer=id_answer,
+        answer_id=answer_id,
         text=put_request['text'],
     )
 
@@ -55,6 +55,6 @@ def update_answer(
             "api_error_event": None,
             "documentation": DocumentationUrls.url_create_answer,
             "description": "OK",
-            "answer": answer.to_json(),
+            "response": answer.to_json(),
         }
     ), status.HTTP_201_CREATED,
