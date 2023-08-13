@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from project import db
+from project import db, Base
 from project.domain.answer.repository.answer_repository import ITAnswerRepository
 from project.domain.answer.answer import Answer
 

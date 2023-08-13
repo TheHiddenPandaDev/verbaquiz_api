@@ -6,11 +6,14 @@ from typing import Optional
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import mapped_column, relationship
 
-from project import db
+from project import db, Base
 from project.utils.datetime_utils import get_local_datetime, readable_datetime
 
 
 class Answer(db.Model):
+
+    __tablename__ = 'answer'
+
     answer_id: int = db.Column(db.Integer, primary_key=True)
     text: str = db.Column(db.String(64))
     is_correct: bool = db.Column(db.Boolean, default=False, nullable=False)

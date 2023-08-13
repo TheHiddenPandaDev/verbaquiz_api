@@ -1,4 +1,4 @@
-from flask import Blueprint, request, json, jsonify
+from flask import Blueprint, request, jsonify
 from dependency_injector.wiring import inject, Provide
 from flask_api import status
 from werkzeug import Response
