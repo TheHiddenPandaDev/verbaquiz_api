@@ -17,8 +17,7 @@ class Category(db.Model):
     name: str = db.Column(db.String(64))
     is_disabled: bool = db.Column(db.Boolean, default=False, nullable=False)
 
-    quizzes = db.relationship("Quizz", back_populates="category", primaryjoin="quizz.category_id==category.category_id")
-    questions = db.relationship("Question", back_populates="category", primaryjoin="question.category_id==category.category_id")
+    questions = db.relationship("Question", back_populates="category")
 
     created_at: datetime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at: datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)

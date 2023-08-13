@@ -16,9 +16,6 @@ class Quizz(db.Model):
 
     questions = relationship("Question", secondary="quizz_question", back_populates="quizzes")
 
-    category_id = mapped_column(Integer, ForeignKey('category.category_id'))
-    category = relationship("Quizz", back_populates="quizzes", foreign_keys=[category_id])
-
     user_id = mapped_column(Integer, ForeignKey('user.user_id'))
     user = relationship("User", back_populates="quizzes", foreign_keys=[user_id])
 

@@ -18,7 +18,7 @@ class Question(db.Model):
 
     quizzes = relationship("Quizz", secondary="quizz_question", back_populates="questions")
 
-    answers = db.relationship("Answer", back_populates="question", primaryjoin="Answer.question_id==Question.question_id")
+    answers = db.relationship("Answer", back_populates="question")
 
     category_id = mapped_column(Integer, ForeignKey('category.category_id'))
     category = relationship("Category", back_populates="questions", foreign_keys=[category_id])
